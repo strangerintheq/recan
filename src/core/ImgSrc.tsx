@@ -6,6 +6,7 @@ export function ImgSrc({src, id}) {
     const {images} = useCanvas();
 
     useEffect(() => {
+        images.has(id) && images.delete(id);
         const img = {
             el: new Image(),
             loaded: false,
