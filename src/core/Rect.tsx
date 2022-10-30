@@ -1,8 +1,11 @@
 import React, {useEffect} from "react";
 import {useCanvas} from "./CanvasContext";
 
-export function Rect({x = 0, y = 0, width, height, fill}) {
+type RectProps = {x, y, width, height, fill}
 
+export function Rect(props:RectProps) {
+    console.log('Rect')
+    const {x = 0, y = 0, width, height, fill} = props;
     const {ctx} = useCanvas()
 
     useEffect(() => {

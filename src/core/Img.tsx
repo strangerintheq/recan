@@ -2,7 +2,7 @@ import {useCanvas} from "./CanvasContext";
 import React, {useEffect} from "react";
 
 export function Img({x = 0, y = 0, width, height, img}) {
-
+    console.log('Img')
     const {ctx, images} = useCanvas();
 
     useEffect(() => {

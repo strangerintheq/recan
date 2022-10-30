@@ -14,6 +14,7 @@ export function Canvas(props: CanvasProps) {
 }
 
 function CanvasTag(props: CanvasProps) {
+    props.provided || console.log('Canvas')
     const {ctxRef} = useCanvas();
 
     return props.provided ? <>{props.children}</> :<canvas {...props} ref={canvas => {

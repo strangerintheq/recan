@@ -9,7 +9,7 @@ type TextureProps = PropsWithChildren<{
 }>;
 
 export function Texture(props: TextureProps) {
-
+    console.log('Texture '+props.id)
     const {id, children} = props;
     const {images} = useCanvas();
     const canvasRef = useRef<HTMLCanvasElement>(makeCanvas(props));
