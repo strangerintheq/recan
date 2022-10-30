@@ -1,12 +1,13 @@
 import * as React from 'react';
 import {createContext, MutableRefObject, PropsWithChildren, useContext, useRef} from 'react';
-import {C2D, ImgSrc} from "./types";
+import {C2D, ImgSrcData} from "./types";
 
 type CanvasContextParams = {
+
 };
 
 type CanvasContextData = {
-    images: Map<string, ImgSrc>;
+    images: Map<string, ImgSrcData>;
     ctxRef: MutableRefObject<C2D>;
     ctx(): C2D;
 }
@@ -22,7 +23,7 @@ export const CanvasContextProvider = (props: PropsWithChildren<CanvasContextPara
     const ctxRef = useRef<C2D>();
 
     return <CanvasContext.Provider value={{
-        images: new Map<string, ImgSrc>(),
+        images: new Map<string, ImgSrcData>(),
         ctxRef,
         ctx: () => ctxRef.current
     }}>

@@ -1,9 +1,5 @@
 import React from "react";
-import {Canvas} from "../core/Canvas";
-import {Img} from "../core/Img";
-import {ImgSrc} from "../core/ImgSrc";
-import {matrix, rnd} from "../core/utils";
-import {Rect} from "../core/Rect";
+import {Canvas, Img, ImgSrc, matrix, Rect, rnd} from "../core";
 
 export function Example() {
     const props = {
