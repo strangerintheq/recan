@@ -4,4 +4,7 @@ import {Example} from "./example";
 
 const rootNode = document.createElement('div');
 document.body.append(rootNode);
-createRoot(rootNode).render(<Example />);
+createRoot(rootNode).render(<>
+    <Example />
+    <Example />
+</>);

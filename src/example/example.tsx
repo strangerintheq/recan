@@ -1,5 +1,5 @@
 import React from "react";
-import {Canvas, Img, ImgSrc, many, matrix, pick, Rect, rndi} from "../core";
+import {Canvas, Img, ImgSrc, many, matrix, pick, Rect, rndb, rndi} from "../core";
 import {Texture} from "../core/Texture";
 
 const palette = ['#606c38', '#283618',
@@ -7,7 +7,7 @@ const palette = ['#606c38', '#283618',
 
 export function Example() {
     const props = {width: 500, height: 500};
-    const s = 100, count = 1;
+    const s = 100, count = 2;
     return <Canvas {...props} >
         <ImgSrc src={'./test.svg'} id={'example-img'}/>
         {many(count, i => <Texture id={'example-texture' + i} {...props} key={i}>
@@ -16,7 +16,7 @@ export function Example() {
             />)}
         </Texture>)}
         {matrix(5, 5, (x, y) => <Img
-            {...imgProps(x, y, s)} img={'example-texture' + rndi(count)}
+            {...imgProps(x, y, s)} img={rndb(0.9) ?'example-img' :'example-texture' + rndi(count)}
         />)}
     </Canvas>
 }
