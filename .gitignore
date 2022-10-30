@@ -1,0 +1,4 @@
+.idea
+build/index.js
+# Project exclude paths
+/node_modules/
