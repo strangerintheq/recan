@@ -9,14 +9,14 @@ type TextureProps = PropsWithChildren<{
 }>;
 
 export function Texture(props: TextureProps) {
-    console.log('Texture '+props.id)
+    // console.log('Texture '+props.id)
     const {id, children} = props;
-    const {images} = useCanvas();
+    const {imagesRef} = useCanvas();
     const canvasRef = useRef<HTMLCanvasElement>(makeCanvas(props));
 
     useEffect(() => {
-        images.has(id) && images.delete(id);
-        images.set(id, {
+        imagesRef.current.has(id) && imagesRef.current.delete(id);
+        imagesRef.current.set(id, {
             el: canvasRef.current,
             loaded: true,
             callbacks: []

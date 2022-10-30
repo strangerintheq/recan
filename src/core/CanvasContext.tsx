@@ -6,9 +6,12 @@ type CanvasContextParams = {
     provided?: MutableRefObject<HTMLCanvasElement>;
 };
 
+
 type CanvasContextData = {
-    images: Map<string, ImgSrcData>;
+    imagesRef: MutableRefObject<Map<string, ImgSrcData>>;
     ctxRef: MutableRefObject<C2D>;
+    layersRef: MutableRefObject<HTMLCanvasElement[]>;
+    markDirty();
     ctx(): C2D;
 }
 
@@ -18,12 +21,27 @@ export const useCanvas = () => {
     return useContext<CanvasContextData>(CanvasContext);
 };
 
+function initRef(props: CanvasContextParams) {
+    if (!props.provided)
+        return null;
+    const ctx = props.provided.current.getContext('2d');
+    if (!ctx.getTransform().e)
+        ctx.translate(ctx.canvas.width / 2, ctx.canvas.height / 2);
+    return ctx
+}
+
 export const CanvasContextProvider = (props: PropsWithChildren<CanvasContextParams>) => {
 
-    const ctxRef = useRef<C2D>(props.provided && props.provided.current.getContext('2d'));
+    const imagesRef = useRef(new Map<string, ImgSrcData>())
+    const ctxRef = useRef<C2D>(initRef(props));
+    const layersRef = useRef<HTMLCanvasElement[]>([]);
 
     return <CanvasContext.Provider value={{
-        images: new Map<string, ImgSrcData>(),
+        markDirty() {
+            ctxRef.current.canvas['dirty'] = true;
+        },
+        layersRef,
+        imagesRef,
         ctxRef,
         ctx: () => ctxRef.current
     }}>
